@@ -1,16 +1,13 @@
-# This is a sample Python script.
+passwords = open("Passwords.csv", "r").read().split('\n')
 
-# Press Umschalt+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+count1 = 0
+count2 = 0
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Strg+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+for row in passwords:
+    entries = str(row).split(' ')
+    if int(entries[0].split('-')[0]) <= entries[2].count(entries[1][0]) <= int(entries[0].split('-')[1]):
+        count1 += 1
+    if (entries[2][int(entries[0].split('-')[0])-1] + entries[2][int(entries[0].split('-')[1])-1]).count(entries[1][0]) == 1:
+        count2 += 1
+print("Part1 Count:\t", count1)
+print("Part2 Count:\t", count2)
